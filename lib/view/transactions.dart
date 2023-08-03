@@ -13,7 +13,7 @@ class TransactionScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-  WidgetsBinding.instance.addPostFrameCallback((_) => Provider.of<FilterProvider>(context,listen: false).getdatas()); 
+  WidgetsBinding.instance.addPostFrameCallback((_) => Provider.of<FilterProvider>(context,listen: false).getdatas(context)); 
 
     final filterprovider = Provider.of<FilterProvider>(context,listen: false); 
     TextEditingController searchcontroller = TextEditingController();

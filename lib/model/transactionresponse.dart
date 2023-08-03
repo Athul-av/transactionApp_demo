@@ -48,7 +48,7 @@ class Datum {
     int? fee;
     String? description;
     DateTime? settledAt;
-    DateTime? estimatedSettledAt;
+    String? estimatedSettledAt;
     String? currency1;
 
     Datum({
@@ -79,7 +79,7 @@ class Datum {
         fee: json["fee"],
         description: json["description"],
         settledAt: json["settledAt"] == null ? null : DateTime.parse(json["settledAt"]),
-        estimatedSettledAt: json["estimatedSettledAt"] == null ? null : DateTime.parse(json["estimatedSettledAt"]),
+        estimatedSettledAt: json["estimatedSettledAt"],
         currency1: json["currency1"],
     );
 
@@ -89,13 +89,13 @@ class Datum {
         "status": status,
         "sourceId": sourceId,
         "sourceType": sourceType,
-        "transactionType": transactionType, 
+        "transactionType": transactionType,
         "currency": currency,
         "createdAt": createdAt?.toIso8601String(),
         "fee": fee,
         "description": description,
         "settledAt": settledAt?.toIso8601String(),
-        "estimatedSettledAt": estimatedSettledAt?.toIso8601String(),
+        "estimatedSettledAt": estimatedSettledAt,
         "currency1": currency1,
     };
 }

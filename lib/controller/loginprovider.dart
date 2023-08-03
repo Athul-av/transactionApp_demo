@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:machine_test1/controller/filterprovider.dart';
 import 'package:machine_test1/model/loginreq.dart';
 import 'package:machine_test1/service/loginservice.dart';
 import 'package:machine_test1/view/homescreen.dart';
-import 'package:provider/provider.dart';
 
 class LoginProvider with ChangeNotifier{
 
@@ -28,8 +26,8 @@ class LoginProvider with ChangeNotifier{
         if (value?.idToken != null ) {
           Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_)=> const HomeScreen())); 
           storage.write(key: 'accessToken', value: value!.idToken);
-          storage.write(key: 'refreshToken', value: value.refreshToken); 
-                 Provider.of<FilterProvider>(context,listen: false).getdatas();
+          // storage.write(key: 'refreshToken', value: value.refreshToken); 
+               
 
           emailcontroller.clear(); 
           passwordcontroller.clear();

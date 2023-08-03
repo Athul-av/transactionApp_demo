@@ -1,15 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
+import 'package:machine_test1/controller/filterprovider.dart';
 import 'package:machine_test1/view/transactions.dart';
 import 'package:machine_test1/widgets/widgets.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    // Provider.of<TransactionsProvider>(context).getdatas(); 
+  Widget build(BuildContext context) { 
+  WidgetsBinding.instance.addPostFrameCallback((_) => Provider.of<FilterProvider>(context,listen: false).getdatas(context));
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 247, 247, 247),
       appBar: AppBar(

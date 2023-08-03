@@ -5,6 +5,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:intl/intl.dart';
 import 'package:machine_test1/model/transactionresponse.dart';
 import 'package:machine_test1/service/trasactionservice.dart';
+import 'package:machine_test1/view/loginscreen.dart';
 
 class FilterProvider with ChangeNotifier{
 
@@ -129,15 +130,22 @@ class FilterProvider with ChangeNotifier{
   bool isloading = false;
 
 
-  getdatas()async{
+  getdatas(context)async{
    isloading = true;
    notifyListeners();
-    String? token = await storage.read(key: 'accessToken');
+    String? token = await storage.read(key:'accessToken');
 
     await TransactionService().getdata(token!).then((value) {
-      alltransaction = value;
+      if (value != null) {
+        alltransaction = value;
       transaction = alltransaction?.data;
       notifyListeners(); 
+      }else{
+      
+        Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder:(context)=> const LoginScreen()), (route) => false);
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content:Text('token expired'),duration: Duration(seconds: 1),backgroundColor: Colors.red,));
+      }
+      
     }); 
  isloading = false;
  notifyListeners(); 

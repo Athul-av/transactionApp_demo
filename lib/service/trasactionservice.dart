@@ -26,9 +26,10 @@ class TransactionService {
     
   }on DioException catch (e) {
     log(e.message.toString());
-     await storage.delete(key:'accessToken');     
+     await storage.delete(key:'accessToken'); 
+     return null;     
   }
-  return null;
+  return null; 
 
  }
 }
